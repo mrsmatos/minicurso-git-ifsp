@@ -1,5 +1,7 @@
 """Testes automatizados da calculadora (rode com: python -m pytest -v)."""
-from calculadora import multiplicar, somar, subtrair
+import pytest
+
+from calculadora import dividir, multiplicar, somar, subtrair
 
 
 def test_somar():
@@ -12,3 +14,12 @@ def test_subtrair():
 
 def test_multiplicar():
     assert multiplicar(6, 5) == 30
+
+
+def test_dividir():
+    assert dividir(9, 3) == 3
+
+
+def test_dividir_por_zero():
+    with pytest.raises(ValueError):
+        dividir(1, 0)
