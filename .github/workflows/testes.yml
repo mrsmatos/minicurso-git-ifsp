@@ -1,0 +1,25 @@
+# Integracao continua: roda os testes a cada push e a cada Pull Request.
+name: Testes
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixa o codigo do repositorio
+        uses: actions/checkout@v4
+
+      - name: Instala o Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instala as dependencias
+        run: pip install -r requirements.txt
+
+      - name: Roda os testes
+        run: python -m pytest -v
